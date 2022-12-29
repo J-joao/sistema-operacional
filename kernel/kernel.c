@@ -1,9 +1,9 @@
 #if defined(__linux__)
-    #error "you are not using a cross-compiler"
+    #error "voce nao esta usando um compilador cruzado (cross-compiler)"
 #endif
  
 #if !defined(__i386__)
-    #error "this code needs to be compiled with a ix86-elf compiler"
+    #error "esse codigo deve ser compilado com um compilador ix86-elf"
 #endif
 
 #include <stddef.h>
