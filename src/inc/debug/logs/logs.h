@@ -21,9 +21,18 @@ void log_write_str(const char *str);
 // essa função escreve uma string formatada na porta 0xe9
 void log_write_formated_str(char *format, ...);
 
-#define log_info(MSG,ARGS...) log_write_formated_str("[INFO] #%s: " MSG,__func__,##ARGS)
-#define log_warn(MSG,ARGS...) log_write_formated_str("[WARNING] #%s: " MSG,__func__,##ARGS)
-#define log_err(MSG,ARGS...) log_write_formated_str("[ERROR] #%s: " MSG,__func__,##ARGS)
-#define log_crit(MSG,ARGS...) log_write_formated_str("[CRITICAL] #%s: " MSG,__func__,##ARGS)
+#define E9_PORT_HACK
+
+#ifdef E9_PORT_HACK
+    #define log_info(MSG,ARGS...) log_write_formated_str("[INFO] #%s: " MSG,__func__,##ARGS)
+    #define log_warn(MSG,ARGS...) log_write_formated_str("[WARNING] #%s: " MSG,__func__,##ARGS)
+    #define log_err(MSG,ARGS...) log_write_formated_str("[ERROR] #%s: " MSG,__func__,##ARGS)
+    #define log_crit(MSG,ARGS...) log_write_formated_str("[CRITICAL] #%s: " MSG,__func__,##ARGS)
+#else 
+    #define log_info(MSG,ARGS...)
+    #define log_warn(MSG,ARGS...)
+    #define log_err(MSG,ARGS...) 
+    #define log_crit(MSG,ARGS...)
+#endif
 
 #endif //LOGS_H

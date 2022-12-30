@@ -1,8 +1,10 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <stdarg.h>
-#include "../string.h"
+
 #include "../useful/useful.h"
+#include "../string.h"
+
 #include "vga.h"
 
 // posição da linha do terminal vga
@@ -48,6 +50,7 @@ void vga_putchar_xy(const uint8_t bg, const uint8_t fg, int x, int y, char c) {
 }
 
 void vga_putchar(const uint8_t bg, const uint8_t fg, char c) {
+    
     if (c == '\n') {
         vga_newline();
         return;
@@ -118,7 +121,9 @@ void vga_write_formated_str(const uint8_t bg, const uint8_t fg, char *format, ..
             }
         } 
         // se não for encontrado "%", escrever a string que for passada como argumento
-        else { vga_putchar(bg, fg, *ptr++); }
+        else {
+            vga_putchar(bg, fg, *ptr++); 
+        }
     }
     va_end(ap);
 }
