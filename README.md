@@ -25,3 +25,7 @@ se quiser limpar as pastas de montagem
 make clean
 ```
 <br>
+
+<img src="img/grub.png" style="width:700px; height:400px;">
+
+<img src="img/os.png" style="width:700px; height:400px;">
