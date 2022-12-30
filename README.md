@@ -10,9 +10,9 @@ sudo chmod +wrx ./build.sh
 ./build.sh
 ```
 
-**para abrir o sistema operacional em uma maquina virtual, use qemu, com o seguinte comando**
+**para abrir o sistema operacional em uma maquina virtual, use qemu, com o seguinte comando:**
 ```
-qemu-system-i386 -cdrom ./build/iso/os.iso
+qemu-system-i386 -debugcon file:kernel_logs.log -cdrom ./build/iso/os.iso
 ```
 
 se quiser limpar as pastas de montagem
