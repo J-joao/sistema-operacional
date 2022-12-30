@@ -15,6 +15,11 @@ sudo chmod +wrx ./build.sh
 qemu-system-i386 -debugcon file:kernel_logs.log -cdrom ./build/iso/os.iso
 ```
 
+**para rodar o sistema operacional no seu próprio computador, use dd para escrever a imagem para uma mídia bootavel**
+```
+sudo dd if=./build/iso/os.iso of=/dev/sdx
+```
+
 se quiser limpar as pastas de montagem
 ```
 make clean
