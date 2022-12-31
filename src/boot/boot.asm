@@ -41,12 +41,12 @@ _start:
 	mov esp, stack_top
 
     ; exportar a função de entrada do kernel
-	extern kernel_main
+	extern kernel_entry
     ; chamar a função de entrada do kernel (definida no arquivo kernel.c)
-	call kernel_main
+	call kernel_entry
 	; limpar interrupts
     cli
-
+    
 ; loop infinito
 .hang:	
     hlt

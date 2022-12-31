@@ -8,10 +8,6 @@
 // para fora da maquina virtual. usaremos disso para escrever no arquivo
 // kernel_logs.log
 
-enum log_modes {
-    LOG_INFO, LOG_WARN, LOG_ERR, LOG_CRIT
-};
-
 // essa função escreve um caracter na porta 0xe9
 void log_putchar(char c);
 

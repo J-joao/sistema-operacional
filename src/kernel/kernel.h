@@ -3,9 +3,9 @@
 
 #include "../inc/debug/logs/logs.h"
 
-#define OS_NAME "sistema operacional sem nome"
+#define OS_NAME "[[CHAD OS]]"
 
 // função de entrada do kernel
-void kernel_main();
+void kernel_entry();
 
 #endif //KERNEL_H

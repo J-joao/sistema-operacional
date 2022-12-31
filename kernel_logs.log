@@ -1,1 +1,6 @@
-[INFO] #kernel_main: initializing linear text-buffer
+[INFO] #kernel_entry: initializing linear text-buffer
+[INFO] #kernel_entry: initializing GDT
+[INFO] #kernel_entry: initializing IDT
+[INFO] #isr_handler: reg.int_no = 1
+[INFO] #isr_handler: reg.int_no = 0
+[CRITICAL] #panic: a kernel panic has occured | reason: division by zero

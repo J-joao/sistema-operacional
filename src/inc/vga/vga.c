@@ -4,7 +4,6 @@
 
 #include "../useful/useful.h"
 #include "../string.h"
-
 #include "vga.h"
 
 // posição da linha do terminal vga

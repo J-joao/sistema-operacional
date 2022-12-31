@@ -4,8 +4,9 @@ BUILDDIR=./build
 SRCDIR=./src
 
 OBJFILES=$(BUILDDIR)/obj/boot.o $(BUILDDIR)/obj/string.o $(BUILDDIR)/obj/vga.o $(BUILDDIR)/obj/memory.o \
-		 $(BUILDDIR)/obj/useful.o $(BUILDDIR)/obj/io.o $(BUILDDIR)/obj/logs.o \
-		 $(BUILDDIR)/obj/kernel.o
+		 $(BUILDDIR)/obj/useful.o $(BUILDDIR)/obj/io.o $(BUILDDIR)/obj/logs.o $(BUILDDIR)/obj/gdt_idt_asm.o \
+		 $(BUILDDIR)/obj/interrupts.o $(BUILDDIR)/obj/gdt.o $(BUILDDIR)/obj/idt.o $(BUILDDIR)/obj/isr.o \
+		 $(BUILDDIR)/obj/panic.o $(BUILDDIR)/obj/kernel.o		 
 
 CFLAGS=-std=gnu99 -ffreestanding -Wextra
 
@@ -31,6 +32,17 @@ all:
 	i686-elf-gcc -c $(SRCDIR)/inc/useful/useful.c -o $(BUILDDIR)/obj/useful.o $(CFLAGS)
 	i686-elf-gcc -c $(SRCDIR)/inc/IO/io.c -o $(BUILDDIR)/obj/io.o $(CFLAGS)
 	i686-elf-gcc -c $(SRCDIR)/inc/debug/logs/logs.c -o $(BUILDDIR)/obj/logs.o $(CFLAGS)
+
+### gerar os arquivos objeto dos arquivos na pasta "kernel/arch/i386"
+	nasm -f elf32 $(SRCDIR)/kernel/arch/i386/gdt_idt.asm -o $(BUILDDIR)/obj/gdt_idt_asm.o
+	nasm -f elf32 $(SRCDIR)/kernel/arch/i386/interrupt_handlers/interrupts.asm -o $(BUILDDIR)/obj/interrupts.o
+
+	i686-elf-gcc -c $(SRCDIR)/kernel/arch/i386/gdt/gdt.c -o $(BUILDDIR)/obj/gdt.o $(CFLAGS)
+	i686-elf-gcc -c $(SRCDIR)/kernel/arch/i386/idt/idt.c -o $(BUILDDIR)/obj/idt.o $(CFLAGS)
+	i686-elf-gcc -c $(SRCDIR)/kernel/arch/i386/isr/isr.c -o $(BUILDDIR)/obj/isr.o $(CFLAGS)
+	
+### gerar os arquivos objetos de kernel/panic/
+	i686-elf-gcc -c $(SRCDIR)/kernel/panic/panic.c -o $(BUILDDIR)/obj/panic.o $(CFLAGS)
 
 ### gerar o arquivo objeto do kernel
 	i686-elf-gcc -c $(SRCDIR)/kernel/kernel.c -o $(BUILDDIR)/obj/kernel.o $(CFLAGS)
