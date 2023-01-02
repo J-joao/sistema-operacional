@@ -1,7 +1,16 @@
 #ifndef IO_H
 #define IO_H
 
-unsigned char inportb (unsigned short port);
-void outportb (unsigned short port, unsigned char data);
+#include <stddef.h>
+#include <stdint.h>
+
+/// le o valor de uma porta = valor contido na porta
+// @port = porta a ser lida
+uint8_t inportb (uint16_t port);
+
+/// escreve dados em uma porta
+// @port = porta a ser escrita
+// @data = dados a serem escritos na porta
+void outportb (uint16_t port, uint8_t data);
 
 #endif //IO_H

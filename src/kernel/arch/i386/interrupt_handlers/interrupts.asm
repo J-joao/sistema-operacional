@@ -7,7 +7,7 @@ global isr%1        ; definindo todas as ISRs que não tem código de erro padr�
 
 isr%1:
     cli             ; desabilitar interrupções 
-    push byte 0
+    push byte 0     ; valor ficticio
     push byte %1    ; push no numero da interrupção
 
     jmp isr_stub      

@@ -8,13 +8,16 @@
 // para fora da maquina virtual. usaremos disso para escrever no arquivo
 // kernel_logs.log
 
-// essa função escreve um caracter na porta 0xe9
+// escreve um caracter na porta 0xe9
+// @param c = caracter a ser escrito
 void log_putchar(char c);
 
-// essa função escreve uma string na porta 0xe9
+// escreve uma string na porta 0xe9
+// @param str = string a ser escrita
 void log_write_str(const char *str);
 
-// essa função escreve uma string formatada na porta 0xe9
+// escreve uma string formatada na porta 0xe9
+// @param format = string formatada a ser escrita
 void log_write_formated_str(char *format, ...);
 
 #define E9_PORT_HACK

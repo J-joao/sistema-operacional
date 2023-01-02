@@ -1,11 +1,15 @@
 #include "io.h"
 
-unsigned char inportb (unsigned short port) {
-    unsigned char rv;
-    __asm__ __volatile__ ("inb %1, %0" : "=a" (rv) : "dN" (port));
-    return rv;
+uint8_t inportb (uint16_t port) {
+    uint8_t return_val;
+    
+    // input: return val
+    // output: port
+    __asm__ __volatile__ ("inb %1, %0" : "=a" (return_val) : "dN" (port));
+    return return_val;
 }
 
-void outportb (unsigned short port, unsigned char data) {
+void outportb (uint16_t port, uint8_t data) {
+    // output: port, data
     __asm__ __volatile__ ("outb %1, %0" : : "dN" (port), "a" (data));
 }

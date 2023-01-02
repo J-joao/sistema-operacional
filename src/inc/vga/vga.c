@@ -2,29 +2,32 @@
 #include <stdint.h>
 #include <stdarg.h>
 
+#include "../memory/memory.h"
 #include "../useful/useful.h"
 #include "../string.h"
 #include "vga.h"
 
-// posição da linha do terminal vga
+/// posição da linha do terminal vga
 uint16_t vga_row = 0;
-// posição da coluna do terminal vga
+/// posição da coluna do terminal vga
 uint16_t vga_col = 0;
 
-void vga_newline(void) {
+void vga_newline() {
     vga_row++;
     vga_col = 0;
 }
-void vga_tab(void) {
+void vga_tab() {
     vga_col += DEFAULT_TAB_WIDTH;
 }
-void vga_carriage_return(void) {
+void vga_carriage_return() {
     vga_col--;
 }
 
-void vga_initialize(void) {
-    // no modo VGA 3, o endereço físico para o buffer de texto é 0xb8000
-    text_buffer = (uint16_t *)(0xb8000);
+void vga_backspace() {
+}
+
+void vga_initialize(uint32_t *address) {
+    text_buffer = (uint16_t *)(address);
     vga_row = 0;
     vga_col = 0;   
     vga_clear_screen();
@@ -35,7 +38,7 @@ uint16_t format_character(const uint8_t bg, const uint8_t fg, char c) {
     return c | (attr_byte << 8);
 }
 
-void vga_clear_screen(void) {
+void vga_clear_screen() {
     for (int y = 0; y < VGA_HEIGHT; y++) {
         for (int x = 0; x < VGA_WIDTH; x++) {
             // text_buffer[x, y] = espaço em branco
@@ -49,7 +52,6 @@ void vga_putchar_xy(const uint8_t bg, const uint8_t fg, int x, int y, char c) {
 }
 
 void vga_putchar(const uint8_t bg, const uint8_t fg, char c) {
-    
     if (c == '\n') {
         vga_newline();
         return;

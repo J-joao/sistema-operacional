@@ -1,6 +1,6 @@
-global gdt_flush
+global gdt_set
 
-gdt_flush:
+gdt_set:
 	mov eax, [esp+4] ; ponteiro da GDT passado como argumento  
 	lgdt [eax]       ; carregar ponteiro da GDT
 	
@@ -20,9 +20,9 @@ gdt_flush:
 	ret
 
 
-global idt_flush
+global idt_set
 
-idt_flush:
+idt_set:
 	mov eax, [esp+4] ; ponteiro da IDT passado como argumento 
 	lidt [eax]       ; carregar ponteiro da IDT no registrador especial: IDTR
 	ret 

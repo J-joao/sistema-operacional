@@ -6,6 +6,5 @@ void *memset(void *ptr, int c, size_t size) {
     for (int i = 0; i < (int) size; i++) {
         c_ptr[i] = (char) c;
     }
-    
     return ptr;
 }
