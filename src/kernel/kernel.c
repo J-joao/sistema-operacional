@@ -1,10 +1,10 @@
-#if defined(__linux__)
-    #error "voce nao esta usando um compilador cruzado (cross-compiler)"
-#endif
+// #if defined(__linux__)
+//     #error "voce nao esta usando um compilador cruzado (cross-compiler)"
+// #endif
  
-#if !defined(__i386__)
-    #error "esse codigo deve ser compilado com um compilador ix86-elf"
-#endif
+// #if !defined(__i386__)
+//     #error "esse codigo deve ser compilado com um compilador ix86-elf"
+// #endif
 
 #include <stddef.h>
 #include <stdint.h>

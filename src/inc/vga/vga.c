@@ -24,6 +24,7 @@ void vga_carriage_return() {
 }
 
 void vga_backspace() {
+    text_buffer[(vga_row * VGA_WIDTH) + vga_col--] = 0x0000;
 }
 
 void vga_initialize(uint32_t *address) {
